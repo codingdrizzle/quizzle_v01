@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import 'antd/dist/antd.min.css'
+import AppLayout from './components/app-layout'
+import QuizSetup from './components/quiz-setup'
+import Start from './commons/start'
+import Quiz from './components/real-quiz'
 
 function App() {
+  // const [loading, setLoading] = useState(false);
+  // const [isReady, setIsReady] = useState(true);
+  // const letsGo = () => {
+  //   setLoading(!loading)
+  //   setTimeout(()=> setIsReady(!isReady), 3000)
+  // }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* <GlobalStyles/> */}
+      {/* {isReady ? <Start load={loading} letsGo={letsGo}/> : */}
+      <AppLayout className='fade'>
+        <QuizSetup/>
+      </AppLayout>
+       {/* }  */}
+    </>
   );
 }
 
