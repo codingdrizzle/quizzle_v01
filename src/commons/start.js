@@ -1,6 +1,8 @@
-import React, {useState} from 'react'
-import { Button } from 'antd'
-import {createGlobalStyle} from 'styled-components'
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { isLoaded } from "../united-states/actions";
+import { Button, Progress } from "antd";
+import { createGlobalStyle } from "styled-components";
 
 const StartStyles = createGlobalStyle`
     .landing{
@@ -31,23 +33,35 @@ const StartStyles = createGlobalStyle`
         background: #fff;
         border: none
     }
-`
-export default function Start(props){
-    const { load, letsGo } = props
-    const [loading, setLoading] = useState(load)
-    const [text, setText] = useState('START')
-
-    const Loaded = () => {
-        setText('Please wait...')
-        setLoading(!loading)
-        letsGo()
-    }
-    return(
-        <>
-            <StartStyles/>
-            <div className='landing'>
-                <Button loading={loading} onClick={Loaded} className='start' size='large'>&nbsp; {text}</Button>
-            </div>
-        </>
+`;
+export default function Start(props) {
+  const [text, setText] = useState("START");
+  const [ timer, setTimer] = useState(10)
+  const setLoader = useDispatch();
+  const starter = () => {
+      setInterval(setTimer(timer+15),1000)
+      setText(
+      <Progress
+        type="line"
+        steps={6}
+        strokeColor="#1976D2"
+        percent={timer}
+        size="small"
+        status="active"
+        showInfo={true}
+      />
     );
+    setTimeout(() => setLoader(isLoaded()), 6000);
+  };
+
+  return (
+    <>
+      <StartStyles />
+      <div className="landing">
+        <Button onClick={starter} className="start" size="large">
+          &nbsp; {text}
+        </Button>
+      </div>
+    </>
+  );
 }
