@@ -1,239 +1,147 @@
-import React, { useRef, useState } from 'react'
-import { Row, Col, Card, List, Select, Button } from 'antd'
-import { createGlobalStyle } from 'styled-components'
-import { Routes, Route, Link } from 'react-router-dom'
-import { rules } from '../../commons/rules-list'
-import { RiCheckDoubleLine } from 'react-icons/ri'
-import { GrFormClose } from 'react-icons/gr'
-import Quiz from '../real-quiz'
+import React, { useRef, useState } from "react";
+import { Row, Col, Card, List, Select, Button } from "antd";
+import { Routes, Route, Link } from "react-router-dom";
+import { rules } from "../../commons/rules-list";
+import { RiCheckDoubleLine } from "react-icons/ri";
+import { GrFormClose } from "react-icons/gr";
+import Quiz from "../real-quiz";
+import Categories from './selections/categories'
+import NumberOfQuestions from "./selections/number-of-questions"
+import DifficultyLevel from "./selections/difficulty-level"
+import QuestionType from "./selections/question-type";
 
-const SelectionStyles = createGlobalStyle`
-    .ant-select-selector, .ant-select-selector:hover, .ant-select-selector:active{
-        border-color: transparent !important;
-        outline: none !important;
-        font-size: 20px !important;
-    }
-    .select{
-        width: 100%;
-    }
-    .select-title{
-        color: #fff;
-        font-weight: 800;
-        font-size: 25px;
-    }
-    .submit-btn{
-        background: rgb(0, 20, 40);
-        color: whitesmoke;
-        border-radius: 50px;
-        height 50px;
-        max-height: 70px;
-        padding: 10px 0 !important;
-        font-size: 20px;
-        font-weight: 700;
-        overflow: hidden !important;
-    }
-    .submit-btn:hover,.submit-btn:active{
-        outline: none !important;
-        border: none;
-        color:  rgb(0, 20, 40);
-    }
-    @media only screen and (max-width: 550px){
-        .select-title{
-            font-size: 18px;
-        }
-    }
-`
-const RulesStyles = createGlobalStyle`
-    .rules-box{
-        position: absolute;
-        top: 0%;
-        bottom: 30%;
-        background: #fff;  
-        border-radius: 0 0 50px 50px;
-    }
-    .rules-header{
-        text-align: center;
-        font-size: 25px;
-        font-weight: 600;
-        color: rgb(0, 20, 40);
-    }
-    .rules-footer{
-        text-align: center;
-        font-size: 15px;
-        font-weight: 600;
-        color: rgb(0, 20, 40);
-    }
-    .ant-list-footer{
-        padding: 0;
-    }
-    .close-btn-container{
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;
-        margin: 0;
-    }
-    .close-btn{
-        width: 30px !important;
-        height: 30px !important;
-        padding: 0;
-        border: 3px solid #a42834;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #f8d7da;
-        cursor: pointer;
-    }
-    .close-btn:hover, .close-btn:active, .close-btn:focus {
-        background: #d14b58 !important;
-        border-color: #a42834 !important;
-        color: #fff !important;
-    }
-    .close-icon{
-        font-size: 1.8rem;
-        color: #a42834 !important;
-    }
-`
+import "../../styled-components/selection-css/index.css";
 
 const { Option } = Select;
-export default function Selections(){
-    const numQue = useRef(null)
-    const category = useRef(null)
-    const diff = useRef(null)
-    const queType = useRef(null)
-    
-    const [numQuestions, setNumQuestions] = useState('10')
-    const [categories, setCategories] = useState('')
-    const [difficulty, setDifficulty] = useState('')
-    const [type, setType] = useState('')
-    const [show, setShow] = useState('0')
-    const handleChange = () => {
-        setNumQuestions(numQue.current.value)
-        setCategories(category.current.value)
-        setDifficulty(diff.current.value)
-        setType(queType.current.value)
+export default function Selections() {
+  const numQue = useRef(null);
+  const category = useRef(null);
+  const diff = useRef(null);
+  const queType = useRef(null);
 
-        console.log(numQuestions)
-        console.log(categories)
-        console.log(difficulty)
-        console.log(type)
-    }
-    const showRules = () => {
-        setShow('1')
-    }
-    const hideRules = () => {
-        setShow('0')
-    }
-    const data = ''
-    const startQuiz = () => {
-        data = {
-            numberOfQuestions: numQue.current.value,
-            categories: category.current.value,
-            difficulty: diff.current.value,
-            questionType: queType.current.value
-        }
-    }
-    return(
-        <>  
-            <Routes>
-                <Route path={'/'} exact element={
-            <>            
-                <SelectionStyles/>
-                <Row gutter={[0, 20]} align='middle' justify='center' style={{marginBottom: 60}}>
-                    <Col xs={20} md={15} lg={13}>
-                        <div align='middle' justify='center'>
-                            <h2 className='select-title'>Number of Questions</h2>
-                            <Select value={numQuestions} placeholder='Choose number of questions' size='large' className='select' onChange={handleChange} ref={numQue}>
-                                <Option value='10'>10</Option>
-                                <Option value='15'>15</Option>
-                                <Option value='25'>25</Option> 
-                                <Option value='30'>30</Option>
-                            </Select>   
-                        </div>              
-                    </Col>
-                    <Col xs={20} md={15} lg={13}>
-                        <div align='middle' justify='center'>
-                            <h2 className='select-title'>Categories</h2>
-                            <Select placeholder='Select a category' value={categories} size='large' className='select' onChange={handleChange} ref={category}>
-                                <Option value=''>Any Category</Option>
-                                <Option value='9'>General Knowledge</Option>
-                                <Option value='10'>Entertainment: Books</Option>
-                                <Option value='11'>Entertainment: Film</Option>
-                                <Option value='12'>Entertainment: Music</Option>
-                                <Option value='13'>Entertainment: Musicals and Theatres</Option>
-                                <Option value='14'>Entertainment: Television</Option>
-                                <Option value='15'>Entertainment: Video Games</Option>
-                                <Option value='16'>Entertainment: Board Games</Option>
-                                <Option value='17'>Science and Nature</Option>
-                                <Option value='18'>Science: Computers</Option>
-                                <Option value='19'>Science: Mathematics</Option>
-                                <Option value='20'>Mythology</Option>
-                                <Option value='21'>Sports</Option>
-                                <Option value='22'>Geography</Option>
-                                <Option value='23'>History</Option>
-                                <Option value='24'>Politics</Option>
-                                <Option value='25'>Art</Option>
-                                <Option value='26'>Celebrities</Option>
-                                <Option value='27'>Animals</Option>
-                                <Option value='28'>Vehicles</Option>
-                                <Option value='29'>Entertainment: Comics</Option>
-                                <Option value='30'>Science: Gadgets</Option>
-                                <Option value='31'>Entertainment: Japanese Anime and Manga</Option>
-                                <Option value='32'>Entertainment: Cartoon and Animations</Option>
-                            </Select>   
-                        </div>              
-                    </Col>
-                    <Col xs={20} md={15} lg={13}>
-                        <div align='middle' justify='center'>
-                            <h2 className='select-title'>Difficulty Level</h2>
-                            <Select placeholder='Choose how difficult' value={difficulty} size='large' className='select' onChange={handleChange} ref={diff}>
-                                <Option value=''>Any Difficulty Level</Option>
-                                <Option value='easy'>Easy</Option>
-                                <Option value='medium'>Medium</Option> 
-                                <Option value='hard'>Hard</Option>
-                            </Select>   
-                        </div>              
-                    </Col>
-                    <Col xs={20} md={15} lg={13}>
-                        <div align='middle' justify='center'>
-                            <h2 className='select-title'>Questions Type</h2>
-                            <Select placeholder='Choose how difficult' value={type} size='large' className='select' onChange={handleChange} ref={queType}>
-                                <Option value=''>Any Type</Option>
-                                <Option value='multiple'>Multiple Choice</Option>
-                                <Option value='boolean'>True / False</Option> 
-                                <Option value='hard'>Hard</Option>
-                            </Select>   
-                        </div>              
-                    </Col>
-                </Row>
-                <Row gutter={[0, 0]} align='middle' justify='center'>
-                    <Col xs={12} md={12} lg={10}> 
-                        <div align='middle' justify='center'>
-                            <Button className='submit-btn' size='large' block onClick={showRules}>Take Quiz</Button>
-                        </div>              
-                    </Col>
-                </Row>
-                <RulesStyles />
-                <Row gutter={[10,10]} align='middle' justify='center' style={{opacity: show}}>
-                    <Col xs={20} lg={10} className="rules-box">
-                        <Card>
-                            <div className="rules_list">
-                                <div className="close-btn-container"><Button className='close-btn' onClick={hideRules}><GrFormClose className='close-icon'/></Button></div>
-                                <List
-                                    size="large"
-                                    header={<div className='rules-header'>Rules of the Quiz</div>}
-                                    dataSource={rules}
-                                    renderItem={item => <List.Item ><RiCheckDoubleLine/> {item}</List.Item>}
-                                    footer={<div className='rules-footer'>GOOD LUCK!</div>}
-                                />
-                            </div>
-                            <Link to={'/quiz'}><Button onClick={startQuiz}>Let Go</Button></Link>   
-                        </Card>
-                    </Col>
-                </Row>
-            </>}/>
-            <Route path='/quiz' exact element={<Quiz data={data}/>}/>
-            </Routes>
-        </>
-    )
+  const [numQuestions, setNumQuestions] = useState("10");
+  const [categories, setCategories] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [type, setType] = useState("");
+  const [show, setShow] = useState("0");
+  const handleChange = () => {
+    setNumQuestions(numQue.current.value);
+    setCategories(category.current.value);
+    setDifficulty(diff.current.value);
+    setType(queType.current.value);
+
+    console.log(numQuestions);
+    console.log(categories);
+    console.log(difficulty);
+    console.log(type);
+  };
+  const showRules = () => {
+    setShow("1");
+  };
+  const hideRules = () => {
+    setShow("0");
+  };
+  const data = "";
+  const startQuiz = () => {
+    data = {
+      numberOfQuestions: numQue.current.value,
+      categories: category.current.value,
+      difficulty: diff.current.value,
+      questionType: queType.current.value,
+    };
+  };
+  return (
+    <>
+      <Routes>
+        <Route
+          path={"/"}
+          exact
+          element={
+            <>
+              <Row
+                gutter={[0, 20]}
+                align="middle"
+                justify="center"
+                style={{ marginBottom: 60 }}
+              >
+                <Col xs={20} md={15} lg={13}>
+                  <div align="middle" justify="center">
+                    <h2 className="select-title">Number of Questions</h2>
+                    <NumberOfQuestions/>
+                  </div>
+                </Col>
+                <Col xs={20} md={15} lg={13}>
+                  <div align="middle" justify="center">
+                    <h2 className="select-title">Categories</h2>
+                    <Categories/>
+                  </div>
+                </Col>
+                <Col xs={20} md={15} lg={13}>
+                  <div align="middle" justify="center">
+                    <h2 className="select-title">Difficulty Level</h2>
+                    <DifficultyLevel/>
+                  </div>
+                </Col>
+                <Col xs={20} md={15} lg={13}>
+                  <div align="middle" justify="center">
+                    <h2 className="select-title">Questions Type</h2>
+                    <QuestionType/>
+                  </div>
+                </Col>
+              </Row>
+              <Row gutter={[0, 0]} align="middle" justify="center">
+                <Col xs={12} md={12} lg={10}>
+                  <div align="middle" justify="center">
+                    <Button
+                      className="submit-btn"
+                      size="large"
+                      block
+                      onClick={showRules}
+                    >
+                      Take Quiz
+                    </Button>
+                  </div>
+                </Col>
+              </Row>
+              <Row
+                gutter={[10, 10]}
+                align="middle"
+                justify="center"
+                style={{ opacity: show }}
+              >
+                <Col xs={20} lg={10} className="rules-box">
+                  <Card>
+                    <div className="rules_list">
+                      <div className="close-btn-container">
+                        <Button className="close-btn" onClick={hideRules}>
+                          <GrFormClose className="close-icon" />
+                        </Button>
+                      </div>
+                      <List
+                        size="large"
+                        header={
+                          <div className="rules-header">Rules of the Quiz</div>
+                        }
+                        dataSource={rules}
+                        renderItem={(item) => (
+                          <List.Item>
+                            <RiCheckDoubleLine /> {item}
+                          </List.Item>
+                        )}
+                        footer={<div className="rules-footer">GOOD LUCK!</div>}
+                      />
+                    </div>
+                    <Link to={"/quiz"}>
+                      <Button onClick={startQuiz}>Let Go</Button>
+                    </Link>
+                  </Card>
+                </Col>
+              </Row>
+            </>
+          }
+        />
+        <Route path="/quiz" exact element={<Quiz data={data} />} />
+      </Routes>
+    </>
+  );
 }
