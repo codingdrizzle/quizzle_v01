@@ -46,3 +46,16 @@ export const ShowQuiz = () => {
     type: 'SHOW_QUIZ'
   }
 }
+
+export const FetchData = (data) => {
+  return {
+    type: 'FETCH_DATA',
+    payload: data
+  }
+}
+
+export const NextQuestion = () => {
+  return {
+    type: 'NEXT_QUESTION'
+  }
+}

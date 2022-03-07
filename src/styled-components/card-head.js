@@ -4,9 +4,8 @@ export const CardHead = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 5px 0;
     width: 100%;
-    padding-bottom: 10px;
+    padding: 15px 10px;
     box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.1);
     @media only screen and (max-width: 650px){
         flex-direction: column-reverse;
@@ -17,16 +16,17 @@ export const QuestionNumber = styled.h3`
     font-size: 23px;
     color: rgb(0, 20, 40);
     margin: 0;
-    font-weight: 600;
+    font-weight: 700;
     @media only screen and (max-width: 650px){
         font-size: 18px;
+        margin-top: 10px;
     }
 `
 
 export const TimeBox = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 150px;
     heigth: 45px;
     background: #cce5ff;
@@ -36,6 +36,9 @@ export const TimeBox = styled.div`
     @media only screen and (max-width: 650px){
         padding: 5px;
     }
+    @media only screen and (max-width: 250px){
+        width: 120px;
+    }
 `
 
 export const TimerText = styled.h3`
@@ -44,7 +47,7 @@ export const TimerText = styled.h3`
     user-select: none;
     margin: 0;
     @media only screen and (max-width: 650px){
-        font-size: 15px;
+        font-size: 16px;
     }
 `
 
@@ -63,6 +66,6 @@ export const TimerSec = styled.h3`
     overflow: hidden !important;
     margin: 0;
     @media only screen and (max-width: 650px){
-        font-size: 16px
+        font-size: 17px
     }
 `

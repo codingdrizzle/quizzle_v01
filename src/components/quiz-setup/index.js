@@ -11,7 +11,7 @@ export default function QuizSetup() {
 
   return !renderQuizPage ? (
     <>
-      <Selections />
+      <Selections/>
       <Rules display={display} />
     </>
   ) : (

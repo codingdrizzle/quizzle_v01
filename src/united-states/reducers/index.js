@@ -6,6 +6,8 @@ import NumberOfQuestions from './setNumberOfQuestions'
 import QuizType from './setQuizType'
 import ShowRules from "./show-rules";
 import ShowQuiz from './showQuiz'
+import FetchData from './fetch-data'
+import NewQuestion from './new-question'
 
 export const allReducers = combineReducers({
     loaded: isLoadedReducer,
@@ -14,5 +16,7 @@ export const allReducers = combineReducers({
     NumberOfQuestions,
     QuizType,
     ShowRules,
-    ShowQuiz
+    ShowQuiz,
+    FetchData,
+    NewQuestion
 })
