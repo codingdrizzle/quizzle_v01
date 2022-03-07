@@ -1,5 +1,5 @@
 
-export const rules = [
+export const RULES_LIST = [
     "1. You will have only 15 seconds per each questions.",
     "2. Once you select you answer, you can't reselect.",
     "3. You can't select any option on timeout.",

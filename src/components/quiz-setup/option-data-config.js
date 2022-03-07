@@ -1,7 +1,7 @@
 export const AMOUNT_OF_QUESTIONS = [ '10', '15', '25', '30']
 
 export const CATEGORIES = [
-    {value: null, text: 'Any Category'},
+    {value: '', text: 'Any Category'},
     {value: '9', text: 'General Knowledge'},
     {value: '10', text: 'Books'},
     {value: '11', text: 'Film'},
@@ -29,14 +29,14 @@ export const CATEGORIES = [
 ]
 
 export const DIFFICULTY_LEVEL = [
-    {value: null, text: 'Any Difficulty Level'},
+    {value: '', text: 'Any Difficulty Level'},
     {value: 'easy', text: 'Easy'},
     {value: 'medium', text: 'Medium'},
     {value: 'hard', text: 'Difficult'}
 ]
 
 export const TYPE_OF_QUESTION = [
-    {value: null, text: 'Any Type'},
+    {value: '', text: 'Any Type'},
     {value: 'multiple', text: 'Multiple Choice'},
     {value: 'boolean', text: 'True / False'}
 ]

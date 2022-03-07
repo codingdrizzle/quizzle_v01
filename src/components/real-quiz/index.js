@@ -6,48 +6,47 @@ import { CardHead, QuestionNumber, TimeBox, TimerText, TimerSec } from '../../st
 // import { HalfWayFab } from '../../styled-components/half-way-fab'
 import { FaQuestion } from 'react-icons/fa'
 
-export default function Quiz(props){
+export default function Quiz(){
 
-    let [ index, setIndex ] = useState(0)
-    const [ Questions, setQuestions] = useState([])
-    const [question, setQuestion ] = useState('')
-    const [answers, setAnswers ] = useState([])
-        const { numberOfQuestions, categories, difficulty, questionType } = props.data
-        const url = `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${categories}&difficulty=${difficulty}&type=${questionType}`
+    // let [ index, setIndex ] = useState(0)
+    // const [ Questions, setQuestions] = useState([])
+    // const [question, setQuestion ] = useState('')
+    // const [answers, setAnswers ] = useState([])
+    //     const { numberOfQuestions, categories, difficulty, questionType } = props.data
+    //     const url = `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${categories}&difficulty=${difficulty}&type=${questionType}`
         
-        useEffect(() => {
-            const fetchData = () => {
-                axios.get(url)
-            .then(response => {
-                setQuestions([...response.data.results])
-            })
-            .catch(err => {console.log(err)})
-        }
-        fetchData();
-    },[]);
-    const rePaint = () => {
+    //     useEffect(() => {
+    //         const fetchData = () => {
+    //             axios.get(url)
+    //         .then(response => {
+    //             setQuestions([...response.data.results])
+    //         })
+    //         .catch(err => {console.log(err)})
+    //     }
+    //     fetchData();
+    // },[]);
+    // const rePaint = () => {
         
-        while(index<Questions.length){
-            const correct_answer = Questions[index].correct_answer
-            setQuestion(Questions[index].question)
-            setAnswers([correct_answer, ...Questions[index].incorrect_answers])
+    //     while(index<Questions.length){
+    //         const correct_answer = Questions[index].correct_answer
+    //         setQuestion(Questions[index].question)
+    //         setAnswers([correct_answer, ...Questions[index].incorrect_answers])
 
-           const shuffledAnswers =  _.shuffle(answers)
-           console.log(shuffledAnswers)
+    //        const shuffledAnswers =  _.shuffle(answers)
+    //        console.log(shuffledAnswers)
 
-        }
-        console.log(Questions)
-    }
-    function next(){setIndex(index++)}
+    //     }
+    //     console.log(Questions)
+    // }
+    // function next(){setIndex(index++)}
     return(
-        <>
             <Row gutter={[0,0]} align='middle' justify='center'>
                 <Col xs={20} md={20} lg={13}>
                     <Card>
                         <Row gutter={[0,0]} align='middle' justify='center'>
                             <Col span={20}>
                                 <CardHead>
-                                    <QuestionNumber onClick={rePaint}>
+                                    <QuestionNumber>
                         {/* <HalfWayFab><FaQuestion size={'1em'}/></HalfWayFab> */}
                                         Question Number 1
                                     </QuestionNumber>
@@ -61,20 +60,19 @@ export default function Quiz(props){
             <Row gutter={[0,0]} align='middle' justify='center'>
                 <Col span={20}>
                     <Row gutter={[10,20]} align='middle' justify='center'>
-                        {question}
+                        {/* {question} */}
                         <hr /><hr />
 
-                        {answers}
+                        {/* {answers} */}
                         {/* {Questions.map((item, index) => {
                             return (<p key={index}>Hello all {item.question}</p>)
                         })} */}
                     </Row>
-                    <Button onClick={next}>Next Question</Button>
+                    <Button>Next Question</Button>
                 </Col>
             </Row>
                     </Card>
                 </Col>
             </Row>
-        </>
     )
 }
