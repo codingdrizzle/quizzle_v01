@@ -1,7 +1,8 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from 'axios'
 import { Row, Col, Button } from "antd";
-import { ShowRules } from "../../united-states/actions";
+import { ShowRules, FetchData } from "../../united-states/actions";
 import Categories from "./selections/categories";
 import NumberOfQuestions from "./selections/number-of-questions";
 import DifficultyLevel from "./selections/difficulty-level";
@@ -9,7 +10,32 @@ import QuestionType from "./selections/question-type";
 import "../../styled-components/selection-css/index.css";
 
 export default function Selections() {
-  const Rule = useDispatch();
+  // Redux store selectors
+  const number_of_questions = useSelector((state) => state.NumberOfQuestions);
+  const difficulty = useSelector((state) => state.Difficulty);
+  const category = useSelector((state) => state.Category);
+  const quiz_type = useSelector((state) => state.QuizType);
+
+  // Redux store dispatchers
+  const dispatch = useDispatch();
+
+  // fetch URL composition
+  const url = `https://opentdb.com/api.php?amount=${number_of_questions}&category=${category}&difficulty=${difficulty}&type=${quiz_type}`;
+
+  const RulesAndFetch = () => {
+        axios
+          .get(url) //making a GET Http request
+          // if successful, retrieve data
+          .then((response) => {
+            //  updating redux store
+            dispatch(FetchData(response.data.results));
+          })
+          // handle if any error
+          .catch((err) => {
+            console.log(err);
+          });
+          dispatch(ShowRules());
+  }
   return (
     <>
       <Row
@@ -50,7 +76,7 @@ export default function Selections() {
               className="submit-btn"
               size="large"
               block
-              onClick={() => Rule(ShowRules())}
+              onClick={RulesAndFetch}
             >
               Take Quiz
             </Button>

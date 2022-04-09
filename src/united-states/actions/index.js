@@ -59,3 +59,21 @@ export const NextQuestion = () => {
     type: 'NEXT_QUESTION'
   }
 }
+
+export const Score = () => {
+  return {
+    type: 'IS_CORRECT'
+  }
+}
+
+export const StartTimer = () => {
+  return{
+    type: 'START_TIMER'
+  }
+}
+
+export const ResetTimer = () => {
+  return {
+    type: 'RESET_TIMER'
+  }
+}

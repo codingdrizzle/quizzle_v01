@@ -5,7 +5,7 @@ export const CardHead = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 15px 10px;
+    padding: 15px 40px;
     box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.1);
     @media only screen and (max-width: 650px){
         flex-direction: column-reverse;

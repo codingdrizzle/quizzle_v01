@@ -1,0 +1,98 @@
+/* Customizing Ant Design CSS */
+.answer{
+  display: flex;
+  justify-content: space-between !important;
+  align-items: center;
+}
+
+.answer-list-item {
+  background-color: aliceblue !important;
+  border: 1px solid #84c5fe !important;
+  border-radius: 5px !important;
+  padding: 8px 15px !important;
+  margin-bottom: 15px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+.answer-list-item:hover {
+  background-color: #cce5ff !important;
+  border-color: #004085 !important;
+}
+.status-icon {
+  height: 26px;
+  width: 26px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 15px;
+  line-height: 24px;
+  pointer-events: none;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.status-icon-check {
+  color: #23903c;
+  border-color: #23903c;
+  background-color: #d4edda;
+}
+.status-icon-times {
+  color: #a42834;
+  border-color: #a42834;
+  background-color: #f8d7da;
+}
+.answer{
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 20px;
+}
+.que_text {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.quiz-footer {
+  height: 60px;
+  width: 100%;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.total-que span {
+  display: flex;
+  user-select: none;
+  font-size: 18px;
+}
+
+.total-que span p {
+  font-weight: 700;
+  padding: 0 5px;
+}
+.total-que span p:first-child {
+  padding-left: 0;
+}
+
+.next-btn {
+  height: 40px;
+  padding: 0 13px;
+  font-size: 18px;
+  font-weight: 400;
+  border: none;
+  outline: none;
+  color: #fff;
+  background-color: rgb(0, 20, 40);
+  border-radius: 5px;
+  border: 1px solid rgb(0, 20, 40);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.next-btn:hover {
+  background-color: rgb(0, 17, 34);
+}

@@ -8,6 +8,8 @@ import ShowRules from "./show-rules";
 import ShowQuiz from './showQuiz'
 import FetchData from './fetch-data'
 import NewQuestion from './new-question'
+import Score from "./score";
+import Timer from "./timer"
 
 export const allReducers = combineReducers({
     loaded: isLoadedReducer,
@@ -18,5 +20,7 @@ export const allReducers = combineReducers({
     ShowRules,
     ShowQuiz,
     FetchData,
-    NewQuestion
+    NewQuestion,
+    Score,
+    Timer
 })
