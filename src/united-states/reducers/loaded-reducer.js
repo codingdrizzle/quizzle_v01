@@ -1,4 +1,4 @@
-export default function isLoadedReducer(state = false, action) {
+export default function isLoadedReducer(state = true, action) {
   switch (action.type) {
     case "IS_LOADED":
       return !state;

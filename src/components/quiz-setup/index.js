@@ -15,8 +15,7 @@ export default function QuizSetup() {
       <Rules display={display} />
     </>
   ) : (
-    <Quiz />
-    // <p>Hello Quiz</p>
-    
+    <Quiz />    
   ) 
+
 }

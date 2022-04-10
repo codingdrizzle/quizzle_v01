@@ -1,9 +1,4 @@
 /* Customizing Ant Design CSS */
-.answer{
-  display: flex;
-  justify-content: space-between !important;
-  align-items: center;
-}
 
 .answer-list-item {
   background-color: aliceblue !important;
@@ -17,6 +12,7 @@
   cursor: pointer !important;
   transition: all 0.3s ease;
   user-select: none;
+  font-size: 20px;
 }
 .answer-list-item:hover {
   background-color: #cce5ff !important;
@@ -35,21 +31,42 @@
   padding: 0 !important;
 }
 
+/* .answer{
+  margin: 0 !important;
+  padding: 0 !important;
+
+} */
+.answer-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 30px;
+  height: 30px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+  visibility: hidden;
+}
+.isVisible{
+  visibility: visible !important;
+}
+.disabled {
+    pointer-events:none; 
+    opacity:0.6;
+}
 .status-icon-check {
-  color: #23903c;
-  border-color: #23903c;
+  color: #23903c !important;
+  border-color: #23903c !important;
   background-color: #d4edda;
 }
-.status-icon-times {
+ .status-icon-times {
   color: #a42834;
   border-color: #a42834;
   background-color: #f8d7da;
 }
-.answer{
-  margin: 0 !important;
-  padding: 0 !important;
-  font-size: 20px;
-}
+
 .que_text {
   font-size: 25px;
   font-weight: 600;

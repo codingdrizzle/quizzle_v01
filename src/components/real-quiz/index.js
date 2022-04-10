@@ -8,15 +8,12 @@ import _ from "lodash";
 // import { HalfWayFab } from '../../styled-components/half-way-fab'
 // import { FaQuestion } from 'react-icons/fa'
 import { FaCheck, FaTimes } from "react-icons/fa";
+import { isVisible } from "@testing-library/user-event/dist/utils";
 
 export default function Quiz() {
+  // States
+  const [statusIcon, setIcon] = useState(null)
   // Refs
-  const answer = useRef(null)
-
-  // icons
-  let tickIcon = '<p className="status-icon status-icon-check"><FaCheck /></p>'
-  let crossIcon = '<p className="status-icon status-icon-times"><FaTimes /></p>'
-
 
   // Redus store selectors
   const data = useSelector((state) => state.FetchData);
@@ -51,9 +48,17 @@ export default function Quiz() {
   const Checker = (e) => {
     const clicked_answer = answers.indexOf(e.target.innerText);
     if (clicked_answer === correct_answer) {
-      dispatch(Score())
-      answer.current.insertAdjacentHTML("beforeend", tickIcon)
-      console.log("Yes, it is correct!!!");
+      dispatch(Score());
+      e.target.firstElementChild.classList.add('isVisible')
+      e.target.parentNode.classList.add('disabled')
+      // answer.disabled = true
+      // console.log(e.target.firstElementChild)
+      setIcon(<FaCheck className="status-icon-check" />) 
+    } else{
+       e.target.firstElementChild.classList.add("isVisible");
+       e.target.parentNode.classList.add("disabled");
+      setIcon(<FaTimes className="status-icon-times" />);
+      console.log(correct_answer.parentNode)
     }
   };
 
@@ -62,7 +67,7 @@ export default function Quiz() {
     <Row gutter={[0, 0]} align="middle" justify="center">
       <Col xs={20} md={20} lg={13}>
         <Card>
-          <CardHeader questionNumber={current_question + 1} timerReset={next}/>
+          <CardHeader questionNumber={current_question + 1} timerReset={next} />
           <Row gutter={[0, 0]} align="middle" justify="center">
             <Col span={20}>
               <h2 className="que_text">{data[current_question].question}</h2>
@@ -72,9 +77,9 @@ export default function Quiz() {
                 dataSource={[...answers]}
                 renderItem={(item) => (
                   <List.Item className="answer-list-item" onClick={Checker}>
-                    <p className="answer" ref={answer}>
-                      <span>{item}</span>
-                      <span>icon</span>
+                      {item}
+                    <p className="answer-icon">
+                      {statusIcon}
                     </p>
                   </List.Item>
                 )}
